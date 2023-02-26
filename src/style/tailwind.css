@@ -1,0 +1,19 @@
+@tailwind base;
+.scrollbar-custom {
+  scrollbar-width: thin;
+}
+
+.scrollbar-custom::-webkit-scrollbar {
+  width: 15px;
+}
+
+.scrollbar-custom::-webkit-scrollbar-track {
+  border-radius: 5px;
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb {
+  border-radius: 14px;
+}
+
+@tailwind components;
+@tailwind utilities;
