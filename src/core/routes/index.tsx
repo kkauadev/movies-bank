@@ -7,7 +7,7 @@ import { Footer } from "../../components/sections/footer";
 
 export const AllRoutes = () => {
   return (
-    <main className="scroll-smooth">
+    <>
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -15,6 +15,6 @@ export const AllRoutes = () => {
         <Route path="/search/:value" element={<SearchPage />} />
       </Routes>
       <Footer />
-    </main>
+    </>
   );
 };

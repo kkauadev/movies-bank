@@ -19,32 +19,30 @@ export const Home = () => {
   );
   return (
     <Container>
-      <div>
-        {popularData.isSuccess && (
-          <ListMovieCard
-            pageTitle="Popular"
-            movieList={popularData.data.results}
-          />
-        )}
-        {topRatedData.isSuccess && (
-          <ListMovieCard
-            pageTitle="Maiores notas"
-            movieList={topRatedData.data.results}
-          />
-        )}
-        {upcomingData.isSuccess && (
-          <ListMovieCard
-            pageTitle="Em breve"
-            movieList={upcomingData.data.results}
-          />
-        )}
-        {nowPlayingData.isSuccess && (
-          <ListMovieCard
-            pageTitle="Agora"
-            movieList={nowPlayingData.data.results}
-          />
-        )}
-      </div>
+      {popularData.isSuccess && (
+        <ListMovieCard
+          pageTitle="Popular"
+          movieList={popularData.data.results}
+        />
+      )}
+      {topRatedData.isSuccess && (
+        <ListMovieCard
+          pageTitle="Maiores notas"
+          movieList={topRatedData.data.results}
+        />
+      )}
+      {upcomingData.isSuccess && (
+        <ListMovieCard
+          pageTitle="Em breve"
+          movieList={upcomingData.data.results}
+        />
+      )}
+      {nowPlayingData.isSuccess && (
+        <ListMovieCard
+          pageTitle="Agora"
+          movieList={nowPlayingData.data.results}
+        />
+      )}
     </Container>
   );
 };

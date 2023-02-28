@@ -19,28 +19,45 @@ export const OneMoviePage = () => {
     }
   };
 
+  const view = (value: string) => {
+    if (!data?.poster_path || !data?.backdrop_path) {
+      return value;
+    }
+  };
+
   return (
     <Container className="py-10">
       {isSuccess && (
         <>
-          <section className="flex flex-col items-center relative sm:pb-[100px] text-white">
+          <section
+            className={`flex flex-col items-center relative lg:pb-[100px] text-white ${view(
+              "lg:pb-0"
+            )} `}
+          >
             {data.backdrop_path && (
               <img
-                className="brightness-[25%] rounded-lg w-[100%] hidden sm:block"
+                className="brightness-[25%] rounded-lg w-[100%] hidden lg:block"
                 src={`${baseURLImg}${data.backdrop_path}`}
                 alt=""
               />
             )}
-            <div className="w-4/5 flex flex-col sm:flex-row sm:absolute sm:top-[400px] sm:gap-24 ">
+            <div
+              className={`w-4/5 flex flex-col lg:flex-row lg:absolute lg:top-[300px] 2xl:top-[400px] lg:gap-24 ${view(
+                "lg:relative lg:top-0 2xl:top-0"
+              )} }`}
+            >
               {data.poster_path && (
                 <img
-                  className="rounded"
+                  className={`rounded  lg:w-[50%] xl:w-[40%] 2xl:w-[350px]`}
                   src={`${baseURLImg}${data.poster_path}`}
                   alt=""
-                  width="350px"
                 />
               )}
-              <div className="py-10 flex flex-col text-black sm:text-white">
+              <div
+                className={`py-10 flex flex-col text-black lg:text-white ${view(
+                  "lg:text-black"
+                )}`}
+              >
                 <div className="flex text-4xl gap-2">
                   <h2 className="mb-3">
                     {data.title}{" "}
@@ -54,7 +71,7 @@ export const OneMoviePage = () => {
                 )}
                 <div className="mb-10 flex gap-3">
                   {data.adult && (
-                    <span className="p-2 border-solid border-black sm:border-white border rounded-md">
+                    <span className="p-2 border-solid border-black lg:border-white border rounded-md">
                       +18
                     </span>
                   )}
@@ -64,7 +81,7 @@ export const OneMoviePage = () => {
                   {data.genres?.map((genre) => {
                     return (
                       <li
-                        className="border border-solid border-black sm:border-white py-2 px-4 rounded-md cursor-default"
+                        className="border border-solid border-black lg:border-white py-2 px-4 rounded-md cursor-default"
                         key={genre.id}
                       >
                         {genre.name}
@@ -93,7 +110,7 @@ export const OneMoviePage = () => {
               </div>
             </div>
           </section>
-          <section className="flex flex-col sm:flex-row sm:gap-20 sm:py-10 px-5 sm:px-24">
+          <section className="flex flex-col sm:flex-row sm:gap-20 sm:py-10 px-5 lg:px-24">
             <main className="sm:w-2/3">
               {data.overview && (
                 <div className="mb-5 sm:mb-10">
