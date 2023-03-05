@@ -1,14 +1,15 @@
 import { useParams } from "react-router-dom";
 import { Container } from "../../components/sections/container";
-import { useApi } from "../../core/helpers/getResponse";
 import { MovieList } from "../../core/types";
 import { MovieCard } from "../../components/small/movie-card";
 import { apiKey, baseURL, languageURL } from "../../core/urls";
 import { useEffect } from "react";
+import { useApi } from "../../core/hooks/api-get";
 
 export const SearchPage = () => {
   const { value } = useParams();
   const { isError, isSuccess, data, refetch } = useApi<MovieList>(
+    String(value),
     `${baseURL}search/movie?api_key=${apiKey}${languageURL}&page=1&include_adult=false&query=${value}`
   );
   useEffect(() => {

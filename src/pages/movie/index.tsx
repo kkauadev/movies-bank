@@ -1,14 +1,15 @@
 import { useParams } from "react-router-dom";
-import { useApi } from "../../core/helpers/getResponse";
 import { Container } from "../../components/sections/container";
 import { AsideBox } from "../../components/small/aside-box";
 import { Movie } from "../../core/types";
 import { apiKey, baseURL, baseURLImg, languageURL } from "../../core/urls";
+import { useApi } from "../../core/hooks/api-get";
 
 export const OneMoviePage = () => {
   const { id } = useParams();
 
   const { isSuccess, data } = useApi<Movie>(
+    String(id),
     `${baseURL}movie/${id}?api_key=${apiKey}${languageURL}`
   );
 

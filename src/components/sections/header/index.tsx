@@ -15,7 +15,7 @@ export const Header = () => {
       className="px-[1rem] sm:px-[7rem] py-[2rem] flex justify-between flex-col sm:flex-row gap-2 sm:gap-0"
     >
       <Link className="text-3xl" to="/">
-        MovieDB
+        Movie Bank
       </Link>
       <div className="flex items-center justify-center sm:block">
         <ul className="flex justify-between items-center gap-10 text-xl">

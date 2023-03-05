@@ -2,7 +2,11 @@ import { AllRoutes } from "./core/routes";
 import "./style/tailwind.css";
 
 const App = () => {
-  return <AllRoutes />;
+  return (
+    <>
+      <AllRoutes />
+    </>
+  );
 };
 
 export default App;

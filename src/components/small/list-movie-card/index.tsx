@@ -1,3 +1,4 @@
+import ScrollContainer from "react-indiana-drag-scroll";
 import { MovieItem } from "../../../core/types";
 import { MovieCard } from "../movie-card";
 
@@ -10,7 +11,7 @@ export const ListMovieCard = ({ pageTitle, movieList }: ListMovieCardProps) => {
   return (
     <div className="mb-5">
       <h2 className="mx-2 mb-1 text-3xl">{pageTitle}</h2>
-      <div className="pb-4 gap-2 flex overflow-x-auto scrollbar-thumb-gray-600 scrollbar-track-white scrollbar-thin scrollbar-custom">
+      <ScrollContainer className="scroll-container pb-4 gap-2 flex overflow-x-auto scrollbar-thumb-gray-600 scrollbar-track-white scrollbar-thin scrollbar-custom">
         {movieList &&
           movieList.map((movie) => {
             return (
@@ -22,7 +23,7 @@ export const ListMovieCard = ({ pageTitle, movieList }: ListMovieCardProps) => {
               />
             );
           })}
-      </div>
+      </ScrollContainer>
     </div>
   );
 };
