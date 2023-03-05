@@ -26,6 +26,35 @@ export const OneMoviePage = () => {
     }
   };
 
+  const asideContent = [
+    {
+      data: data?.original_title,
+      title: "Título original",
+    },
+    {
+      data:
+        data?.revenue &&
+        data.revenue.toLocaleString("en-US", {
+          style: "currency",
+          currency: "USD",
+        }),
+      title: "Orçamento",
+    },
+    {
+      data: `${data?.runtime} minutos`,
+      title: "Tempo de filme",
+    },
+    {
+      data:
+        data?.revenue &&
+        data.revenue.toLocaleString("en-US", {
+          style: "currency",
+          currency: "USD",
+        }),
+      title: "Receita",
+    },
+  ];
+
   return (
     <Container className="py-10">
       {isSuccess && (
@@ -43,9 +72,10 @@ export const OneMoviePage = () => {
               />
             )}
             <div
-              className={`w-4/5 flex flex-col lg:flex-row lg:absolute lg:top-[300px] 2xl:top-[400px] lg:gap-24 ${view(
-                "lg:relative lg:top-0 2xl:top-0"
-              )} }`}
+              className={`w-4/5 flex flex-col lg:flex-row relative lg:gap-24 text-black ${
+                data.backdrop_path &&
+                "lg:absolute lg:top-[300px] 2xl:top-[400px] text-white"
+              }   }`}
             >
               {data.poster_path && (
                 <img
@@ -55,9 +85,9 @@ export const OneMoviePage = () => {
                 />
               )}
               <div
-                className={`py-10 flex flex-col text-black lg:text-white ${view(
-                  "lg:text-black"
-                )}`}
+                className={`py-10 flex flex-col text-black ${
+                  data.backdrop_path && "lg:text-white"
+                }`}
               >
                 <div className="flex text-4xl gap-2">
                   <h2 className="mb-3">
@@ -72,7 +102,11 @@ export const OneMoviePage = () => {
                 )}
                 <div className="mb-10 flex gap-3">
                   {data.adult && (
-                    <span className="p-2 border-solid border-black lg:border-white border rounded-md">
+                    <span
+                      className={`p-2 border-solid border-black border rounded-md ${
+                        data.backdrop_path && "lg:border-white"
+                      }`}
+                    >
                       +18
                     </span>
                   )}
@@ -82,7 +116,9 @@ export const OneMoviePage = () => {
                   {data.genres?.map((genre) => {
                     return (
                       <li
-                        className="border border-solid border-black lg:border-white py-2 px-4 rounded-md cursor-default"
+                        className={`border border-solid border-black py-2 px-4 rounded-md cursor-default ${
+                          data.backdrop_path && "lg:border-white"
+                        }`}
                         key={genre.id}
                       >
                         {genre.name}
@@ -131,29 +167,9 @@ export const OneMoviePage = () => {
             </main>
             <aside className="flex flex-col gap-5">
               <ul className="flex flex-col gap-2">
-                <AsideBox title="Título original" data={data.original_title} />
-                {data.budget && (
-                  <AsideBox
-                    title="Orçamento"
-                    data={data.budget.toLocaleString("en-US", {
-                      style: "currency",
-                      currency: "USD",
-                    })}
-                  />
-                )}
-                {data.revenue && (
-                  <AsideBox
-                    title="Receita"
-                    data={data.revenue.toLocaleString("en-US", {
-                      style: "currency",
-                      currency: "USD",
-                    })}
-                  />
-                )}
-                <AsideBox
-                  title="Tempo de filme"
-                  data={`${data.runtime} minutos`}
-                />
+                {asideContent.map(({ data, title }) => {
+                  return <AsideBox key={title} data={data} title={title} />;
+                })}
               </ul>
               {data.production_companies &&
                 data.production_companies.length != 0 && (
