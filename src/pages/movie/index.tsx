@@ -4,11 +4,12 @@ import { AsideBox } from "../../components/small/aside-box";
 import { Movie } from "../../core/types";
 import { apiKey, baseURL, baseURLImg, languageURL } from "../../core/urls";
 import { useApi } from "../../core/hooks/api-get";
+import { Loading } from "../loading";
 
 export const OneMoviePage = () => {
   const { id } = useParams();
 
-  const { isSuccess, data } = useApi<Movie>(
+  const { isLoading, isSuccess, data } = useApi<Movie>(
     String(id),
     `${baseURL}movie/${id}?api_key=${apiKey}${languageURL}`
   );
@@ -57,6 +58,7 @@ export const OneMoviePage = () => {
 
   return (
     <Container className="py-10">
+      {isLoading && <Loading size={20} />}
       {isSuccess && (
         <>
           <section
@@ -68,7 +70,7 @@ export const OneMoviePage = () => {
               <img
                 className="brightness-[25%] rounded-lg w-[100%] hidden lg:block"
                 src={`${baseURLImg}${data.backdrop_path}`}
-                alt=""
+                alt={`Pano de fundo do filme ${data.title}`}
               />
             )}
             <div
@@ -81,7 +83,7 @@ export const OneMoviePage = () => {
                 <img
                   className={`rounded  lg:w-[50%] xl:w-[40%] 2xl:w-[350px]`}
                   src={`${baseURLImg}${data.poster_path}`}
-                  alt=""
+                  alt={`Poster do filme ${data.title}`}
                 />
               )}
               <div

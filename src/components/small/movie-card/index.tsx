@@ -20,6 +20,7 @@ export const MovieCard = ({ id, poster_path, title }: MovieCardProps) => {
       ) : (
         <img
           className="rounded"
+          alt={`poster do filme ${title}`}
           src={`https://image.tmdb.org/t/p/original/${poster_path}`}
         />
       )}

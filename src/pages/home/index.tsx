@@ -3,6 +3,7 @@ import { Container } from "../../components/sections/container";
 import { MovieList } from "../../core/types";
 import { apiKey, baseURL, languageURL } from "../../core/urls";
 import { useManyApi } from "../../core/hooks/api-get";
+import { Loading } from "../loading";
 
 export const Home = () => {
   const [popularData, topRatedData, upcomingData, nowPlayingData] =
@@ -27,29 +28,37 @@ export const Home = () => {
 
   return (
     <Container>
-      {popularData.isSuccess && (
+      {popularData.isSuccess ? (
         <ListMovieCard
           pageTitle="Popular"
           movieList={popularData.data.results}
         />
+      ) : (
+        <Loading size={10} />
       )}
-      {topRatedData.isSuccess && (
+      {topRatedData.isSuccess ? (
         <ListMovieCard
           pageTitle="Maiores notas"
           movieList={topRatedData.data.results}
         />
+      ) : (
+        <Loading size={10} />
       )}
-      {upcomingData.isSuccess && (
+      {upcomingData.isSuccess ? (
         <ListMovieCard
           pageTitle="Em breve"
           movieList={upcomingData.data.results}
         />
+      ) : (
+        <Loading size={10} />
       )}
-      {nowPlayingData.isSuccess && (
+      {nowPlayingData.isSuccess ? (
         <ListMovieCard
           pageTitle="Agora"
           movieList={nowPlayingData.data.results}
         />
+      ) : (
+        <Loading size={10} />
       )}
     </Container>
   );
