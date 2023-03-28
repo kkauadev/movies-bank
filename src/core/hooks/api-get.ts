@@ -6,16 +6,13 @@ interface IUseManyApi {
 }
 
 const fetchApiRequest = async (url: string) => {
-  const fetchData = await fetch(url)
+  return await fetch(url)
     .then((res) => res.json())
     .then((data) => data);
-  return fetchData;
 };
 
 export const useApi = <T>(key: string, url: string) => {
-  return useQuery<T>(key, async () => {
-    return fetchApiRequest(url);
-  });
+  return useQuery<T>(key, () => fetchApiRequest(url));
 };
 
 export function useManyApi<T>(requestArray: IUseManyApi[]) {

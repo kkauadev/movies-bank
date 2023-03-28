@@ -6,7 +6,7 @@ interface IContainer extends HTMLAttributes<HTMLDivElement> {
 
 export const Container = ({ children, ...input }: IContainer) => {
   return (
-    <main className={`container mx-auto px-5 sm:p-0 ${input.className}`}>
+    <main className={`container mx-auto px-5 sm:pt-10 ${input.className}`}>
       {children}
     </main>
   );

@@ -1,8 +1,8 @@
-import { ListMovieCard } from "../../components/small/list-movie-card";
 import { Container } from "../../components/sections/container";
+import { ListMovieCard } from "../../components/small/list-movie-card";
+import { useManyApi } from "../../core/hooks/api-get";
 import { MovieList } from "../../core/types";
 import { apiKey, baseURL, languageURL } from "../../core/urls";
-import { useManyApi } from "../../core/hooks/api-get";
 import { Loading } from "../loading";
 
 export const Home = () => {

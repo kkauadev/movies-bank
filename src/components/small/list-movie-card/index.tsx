@@ -9,7 +9,7 @@ export interface ListMovieCardProps {
 
 export const ListMovieCard = ({ pageTitle, movieList }: ListMovieCardProps) => {
   return (
-    <div className="mb-5">
+    <section className="mb-5">
       <h2 className="mx-2 mb-1 text-3xl">{pageTitle}</h2>
       <ScrollContainer className="scroll-container pb-4 gap-2 flex overflow-x-auto scrollbar-thumb-gray-600 scrollbar-track-white scrollbar-thin scrollbar-custom">
         {movieList &&
@@ -24,6 +24,6 @@ export const ListMovieCard = ({ pageTitle, movieList }: ListMovieCardProps) => {
             );
           })}
       </ScrollContainer>
-    </div>
+    </section>
   );
 };

@@ -1,9 +1,10 @@
 import { useParams } from "react-router-dom";
+
 import { Container } from "../../components/sections/container";
 import { AsideBox } from "../../components/small/aside-box";
+import { useApi } from "../../core/hooks/api-get";
 import { Movie } from "../../core/types";
 import { apiKey, baseURL, baseURLImg, languageURL } from "../../core/urls";
-import { useApi } from "../../core/hooks/api-get";
 import { Loading } from "../loading";
 
 export const OneMoviePage = () => {
@@ -21,11 +22,8 @@ export const OneMoviePage = () => {
     }
   };
 
-  const view = (value: string) => {
-    if (!data?.poster_path || !data?.backdrop_path) {
-      return value;
-    }
-  };
+  const view = (value: string) =>
+    !data?.poster_path || (!data?.backdrop_path && value);
 
   const asideContent = [
     {
@@ -91,61 +89,65 @@ export const OneMoviePage = () => {
                   data.backdrop_path && "lg:text-white"
                 }`}
               >
-                <div className="flex text-4xl gap-2">
-                  <h2 className="mb-3">
-                    {data.title}{" "}
-                    <span className="whitespace-nowrap">
-                      - {data.release_date?.split("-")[0]}
-                    </span>
-                  </h2>
-                </div>
-                {data.status != "Released" && (
-                  <span className="mb-4">{data.status}</span>
-                )}
-                <div className="mb-10 flex gap-3">
-                  {data.adult && (
-                    <span
-                      className={`p-2 border-solid border-black border rounded-md ${
-                        data.backdrop_path && "lg:border-white"
-                      }`}
-                    >
-                      +18
-                    </span>
+                <main>
+                  <div className="flex text-4xl gap-2">
+                    <h2 className="mb-3">
+                      {data.title}{" "}
+                      <span className="whitespace-nowrap">
+                        - {data.release_date?.split("-")[0]}
+                      </span>
+                    </h2>
+                  </div>
+                  {data.status != "Released" && (
+                    <span className="mb-4">{data.status}</span>
                   )}
-                  <span className="my-auto text-md">{releaseDate()}</span>
-                </div>
-                <ul className="flex flex-wrap gap-5 mb-5">
-                  {data.genres?.map((genre) => {
-                    return (
-                      <li
-                        className={`border border-solid border-black py-2 px-4 rounded-md cursor-default ${
+                  <div className="mb-10 flex gap-3">
+                    {data.adult && (
+                      <span
+                        className={`p-2 border-solid border-black border rounded-md ${
                           data.backdrop_path && "lg:border-white"
                         }`}
-                        key={genre.id}
                       >
-                        {genre.name}
-                      </li>
-                    );
-                  })}
-                </ul>
-                <span className="mb-5">{data.tagline}</span>
-                {data.homepage && (
-                  <span className="mb-5">
-                    <a
-                      className="underline underline-offset-2"
-                      href={data.homepage}
-                      target="_blank"
-                    >
-                      Clique aqui
-                    </a>{" "}
-                    para ir para a página do filme
-                  </span>
-                )}
-                {data.vote_average && data.vote_average != 0 && (
-                  <span>
-                    Avaliação dos fans no TMDB: {data.vote_average.toFixed(1)}
-                  </span>
-                )}
+                        +18
+                      </span>
+                    )}
+                    <span className="my-auto text-md">{releaseDate()}</span>
+                  </div>
+                  <ul className="flex flex-wrap gap-5 mb-5">
+                    {data.genres?.map((genre) => {
+                      return (
+                        <li
+                          className={`border border-solid border-black py-2 px-4 rounded-md cursor-default ${
+                            data.backdrop_path && "lg:border-white"
+                          }`}
+                          key={genre.id}
+                        >
+                          {genre.name}
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </main>
+                <aside>
+                  <span className="mb-5">{data.tagline}</span>
+                  {data.homepage && (
+                    <span className="mb-5">
+                      <a
+                        className="underline underline-offset-2"
+                        href={data.homepage}
+                        target="_blank"
+                      >
+                        Clique aqui
+                      </a>{" "}
+                      para ir para a página do filme
+                    </span>
+                  )}
+                  {data.vote_average && data.vote_average != 0 && (
+                    <span>
+                      Avaliação dos fans no TMDB: {data.vote_average.toFixed(1)}
+                    </span>
+                  )}
+                </aside>
               </div>
             </div>
           </section>
