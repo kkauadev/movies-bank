@@ -11,9 +11,8 @@ const fetchApiRequest = async (url: string) => {
     .then((data) => data);
 };
 
-export const useApi = <T>(key: string, url: string) => {
-  return useQuery<T>(key, () => fetchApiRequest(url));
-};
+export const useApi = <T>(key: string, url: string) =>
+  useQuery<T>(key, () => fetchApiRequest(url));
 
 export function useManyApi<T>(requestArray: IUseManyApi[]) {
   const responseQueryData: UseQueryResult<T>[] = useQueries(
