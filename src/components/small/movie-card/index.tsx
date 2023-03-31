@@ -27,7 +27,9 @@ export const MovieCard = ({ id, poster_path, title }: MovieCardProps) => {
           loading="lazy"
         />
       )}
-      <h6 className="text-sm sm:text-lg round">{title}</h6>
+      <h6 className="text-sm sm:text-lg round">
+        {title ? title : "Sem título"}
+      </h6>
     </article>
   );
 };

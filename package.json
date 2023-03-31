@@ -10,12 +10,14 @@
   },
   "dependencies": {
     "@tanstack/react-query": "^4.28.0",
+    "imagemin": "^8.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-indiana-drag-scroll": "^2.2.0",
     "react-router-dom": "^6.10.0"
   },
   "devDependencies": {
+    "@types/imagemin": "^8.0.1",
     "@types/node": "^18.14.1",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",

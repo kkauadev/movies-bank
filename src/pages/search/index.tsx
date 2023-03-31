@@ -11,7 +11,7 @@ export const SearchPage = () => {
   const { value } = useParams();
   const { isError, isSuccess, data, refetch } = useApi<MovieList>(
     ["searched-movie", 456],
-    `${baseURL}search/movie?api_key=${apiKey}${languageURL}&page=1&include_adult=false&query=${value}`
+    `${baseURL}search/movie?api_key=${apiKey}${languageURL}&page=1&query=${value}`
   );
   useEffect(() => {
     refetch();
