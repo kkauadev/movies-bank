@@ -9,19 +9,19 @@ export const Home = () => {
   const [popularData, topRatedData, upcomingData, nowPlayingData] =
     useManyApi<MovieList>([
       {
-        key: "popular",
+        key: ["popular", 1],
         url: `${baseURL}movie/popular?api_key=${apiKey}${languageURL}&page=1`,
       },
       {
-        key: "top-rated",
+        key: ["top-rated", 2],
         url: `${baseURL}movie/top_rated?api_key=${apiKey}${languageURL}`,
       },
       {
-        key: "upcoming",
+        key: ["upcoming", 3],
         url: `${baseURL}movie/upcoming?api_key=${apiKey}${languageURL}`,
       },
       {
-        key: "now-playing",
+        key: ["now-playing", 4],
         url: `${baseURL}movie/now_playing?api_key=${apiKey}${languageURL}`,
       },
     ]);
