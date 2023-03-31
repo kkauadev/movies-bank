@@ -10,7 +10,7 @@ import { apiKey, baseURL, languageURL } from "../../core/urls";
 export const SearchPage = () => {
   const { value } = useParams();
   const { isError, isSuccess, data, refetch } = useApi<MovieList>(
-    String(value),
+    ["searched-movie", 456],
     `${baseURL}search/movie?api_key=${apiKey}${languageURL}&page=1&include_adult=false&query=${value}`
   );
   useEffect(() => {

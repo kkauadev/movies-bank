@@ -11,7 +11,7 @@ export const OneMoviePage = () => {
   const { id } = useParams();
 
   const { isLoading, isSuccess, data } = useApi<Movie>(
-    String(id),
+    ["movie", 123],
     `${baseURL}movie/${id}?api_key=${apiKey}${languageURL}`
   );
 
