@@ -24,6 +24,7 @@ export const MovieCard = ({ id, poster_path, title }: MovieCardProps) => {
           className="rounded"
           alt={`poster do filme ${title}`}
           src={`https://image.tmdb.org/t/p/original/${poster_path}`}
+          loading="lazy"
         />
       )}
       <h6 className="text-sm sm:text-lg round">{title}</h6>

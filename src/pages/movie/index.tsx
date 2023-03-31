@@ -69,6 +69,7 @@ export const OneMoviePage = () => {
                 className="brightness-[25%] rounded-lg w-[100%] hidden lg:block"
                 src={`${baseURLImg}${data.backdrop_path}`}
                 alt={`Pano de fundo do filme ${data.title}`}
+                loading="lazy"
               />
             )}
             <div
@@ -82,6 +83,7 @@ export const OneMoviePage = () => {
                   className={`rounded  lg:w-[50%] xl:w-[40%] 2xl:w-[350px]`}
                   src={`${baseURLImg}${data.poster_path}`}
                   alt={`Poster do filme ${data.title}`}
+                  loading="lazy"
                 />
               )}
               <div

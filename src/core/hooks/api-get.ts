@@ -3,6 +3,7 @@ interface IUseManyApi {
   queryKey: [string, number];
   queryFn: () => Promise<any>;
   staleTime: number;
+  cacheTime: number;
 }
 
 const fetchApiRequest = async (url: string) => {
@@ -12,7 +13,7 @@ const fetchApiRequest = async (url: string) => {
 };
 
 export const useApi = <T>(key: [string, number], url: string) =>
-  useQuery<T>(key, () => fetchApiRequest(url));
+  useQuery<T>(key, () => fetchApiRequest(url), { cacheTime: 864 * 100000 });
 
 export function useManyApi<T>(
   requestArray: {
@@ -25,7 +26,8 @@ export function useManyApi<T>(
     arr.push({
       queryFn: () => fetchApiRequest(values.url),
       queryKey: values.key,
-      staleTime: Infinity,
+      staleTime: 864 * 100000,
+      cacheTime: 864 * 100000,
     });
   });
 
