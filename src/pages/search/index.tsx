@@ -13,6 +13,7 @@ export const SearchPage = () => {
     ["searched-movie", 456],
     `${baseURL}search/movie?api_key=${apiKey}${languageURL}&page=1&query=${value}`
   );
+
   useEffect(() => {
     refetch();
   }, [value]);
@@ -23,17 +24,16 @@ export const SearchPage = () => {
         <>
           <h2 className="text-2xl mb-10">Você pesquisou por: {value}</h2>
           <section className="flex flex-wrap gap-x-2 sm:gap-x-4 gap-y-3 sm:gap-y-10 justify-center">
-            {data.results &&
-              data.results.map((movie) => {
-                return (
-                  <MovieCard
-                    id={movie.id}
-                    poster_path={movie.poster_path}
-                    title={movie.title}
-                    key={movie.id}
-                  />
-                );
-              })}
+            {data.results.map((movie) => {
+              return (
+                <MovieCard
+                  id={movie.id}
+                  poster_path={movie.poster_path}
+                  title={movie.title}
+                  key={movie.id}
+                />
+              );
+            })}
           </section>
         </>
       )}

@@ -21,17 +21,12 @@ export function useManyApi<T>(
     url: string;
   }[]
 ): UseQueryResult<T>[] {
-  const arr: IUseManyApi[] = [];
-  requestArray.forEach((values) => {
-    arr.push({
-      queryFn: () => fetchApiRequest(values.url),
-      queryKey: values.key,
-      staleTime: 864 * 100000,
-      cacheTime: 864 * 100000,
-    });
-  });
+  const arr: IUseManyApi[] = requestArray.map((values) => ({
+    queryFn: () => fetchApiRequest(values.url),
+    queryKey: values.key,
+    staleTime: 864 * 100000,
+    cacheTime: 864 * 100000,
+  }));
 
-  return useQueries({
-    queries: arr,
-  });
+  return useQueries({ queries: arr });
 }
